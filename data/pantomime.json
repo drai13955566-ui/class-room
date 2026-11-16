@@ -35,7 +35,6 @@
     }
   ],
   "gameWords": [
-    "کوهنوردی",
     "سینما",
     "دیجیتال",
     "ماشین حساب",
@@ -43,24 +42,24 @@
     "فوتبال"
   ],
   "scores": [
-    0,
+    3,
     0
   ],
   "mistakes": [
     0,
     0
   ],
-  "turnStartedAt": 1794869150625,
+  "turnStartedAt": 1794870113968,
   "currentTeamIndex": 0,
-  "currentWord": "فوتبال",
-  "originalWord": "",
+  "currentWord": "کوهنوردی",
+  "originalWord": "کوهنوردی",
   "replacementWord": "",
   "hasChangedWord": false,
   "roundDuration": 60,
-  "timeLeft": 0,
-  "canGetWord": true,
+  "timeLeft": 59,
+  "canGetWord": false,
   "gameStarted": true,
   "gameEndedForTurn": true,
-  "activeScreen": "screen-history",
-  "savedAt": "2026-11-16T23:00:32.082Z"
+  "activeScreen": "screen-game",
+  "savedAt": "2026-11-16T23:01:58.149Z"
 }
