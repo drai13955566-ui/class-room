@@ -441,18 +441,62 @@ button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visi
             const path = document.getElementById('gh-path').value.trim() || saved?.path || 'data/pantomime.json';
             const token = document.getElementById('gh-token').value.trim() || saved?.token || '';
             if (!owner || !repo || !token) throw new Error('نام کاربری، نام مخزن و توکن GitHub را کامل کنید.');
+
             const api = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${path.split('/').map(encodeURIComponent).join('/')}`;
-            const headers = { 'Accept':'application/vnd.github+json', 'Authorization':`Bearer ${token}`, 'X-GitHub-Api-Version':'2022-11-28' };
-            let sha;
-            const current = await fetch(`${api}?ref=${encodeURIComponent(branch)}`, {headers});
-            if (current.ok) { const existing = await current.json(); sha = existing.sha; }
-            else if (current.status !== 404) { const e = await current.json().catch(()=>({})); throw new Error(e.message || 'خواندن فایل از GitHub ناموفق بود.'); }
+            const headers = {
+                'Accept': 'application/vnd.github+json',
+                'Authorization': `Bearer ${token}`,
+                'X-GitHub-Api-Version': '2022-11-28',
+                'Cache-Control': 'no-cache'
+            };
             const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-            const payload = { message:'Update pantomime game data', content, branch };
-            if (sha) payload.sha = sha;
-            const response = await fetch(api, {method:'PUT', headers:{...headers,'Content-Type':'application/json'}, body:JSON.stringify(payload)});
-            if (!response.ok) { const e = await response.json().catch(()=>({})); throw new Error(e.message || 'ثبت فایل JSON در GitHub ناموفق بود.'); }
-            return true;
+            let lastError = '';
+
+            // هر تلاش SHA تازه را مستقیم از API می‌گیرد؛ در تعارض هم دوباره تلاش می‌کند.
+            for (let attempt = 1; attempt <= 5; attempt++) {
+                let sha = null;
+                const readUrl = `${api}?ref=${encodeURIComponent(branch)}&_=${Date.now()}_${attempt}`;
+                const current = await fetch(readUrl, {
+                    method: 'GET',
+                    headers,
+                    cache: 'no-store'
+                });
+
+                if (current.ok) {
+                    const existing = await current.json();
+                    sha = existing.sha || null;
+                    if (!sha) throw new Error('GitHub نسخهٔ فعلی فایل را برگرداند، اما SHA آن پیدا نشد.');
+                } else if (current.status !== 404) {
+                    const e = await current.json().catch(() => ({}));
+                    throw new Error(e.message || `خواندن فایل از GitHub ناموفق بود (HTTP ${current.status}).`);
+                }
+
+                const payload = { message: 'Update pantomime game data', content, branch };
+                if (sha) payload.sha = sha;
+
+                const response = await fetch(`${api}?attempt=${attempt}`, {
+                    method: 'PUT',
+                    headers: { ...headers, 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                    cache: 'no-store'
+                });
+
+                if (response.ok) return true;
+
+                const e = await response.json().catch(() => ({}));
+                lastError = e.message || `ثبت فایل JSON ناموفق بود (HTTP ${response.status}).`;
+
+                const shaConflict = /sha|does not match|already exists|reference update failed|conflict/i.test(lastError)
+                    || response.status === 409;
+                if (!shaConflict || attempt === 5) {
+                    throw new Error(lastError);
+                }
+
+                // کمی مکث می‌کنیم تا تغییر هم‌زمان GitHub ثبت شود، سپس SHA را تازه می‌خوانیم.
+                await new Promise(resolve => setTimeout(resolve, 350 * attempt));
+            }
+
+            throw new Error(lastError || 'پس از چند بار تلاش، ذخیره در GitHub انجام نشد.');
         }
 
         function saveAllData(showMessage = false) {
