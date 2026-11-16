@@ -1,0 +1,66 @@
+{
+  "version": 3,
+  "allWords": [
+    "دیجیتال",
+    "ماشین حساب",
+    "دندانپزشک",
+    "کوهنوردی",
+    "فوتبال",
+    "سینما"
+  ],
+  "wordCategories": {},
+  "teamProfiles": {},
+  "selectedCategories": [
+    "همه"
+  ],
+  "teams": [
+    "گروه آلفا",
+    "گروه بتا"
+  ],
+  "matchHistory": [
+    {
+      "date": "۱۴۰۵/۸/۲۶ - ۰۲:۲۶",
+      "results": [
+        {
+          "teamName": "گروه آلفا",
+          "score": 1,
+          "mistake": 1
+        },
+        {
+          "teamName": "گروه بتا",
+          "score": 3,
+          "mistake": 0
+        }
+      ]
+    }
+  ],
+  "gameWords": [
+    "کوهنوردی",
+    "سینما",
+    "دیجیتال",
+    "ماشین حساب",
+    "دندانپزشک",
+    "فوتبال"
+  ],
+  "scores": [
+    0,
+    0
+  ],
+  "mistakes": [
+    0,
+    0
+  ],
+  "turnStartedAt": 1794869150625,
+  "currentTeamIndex": 0,
+  "currentWord": "فوتبال",
+  "originalWord": "",
+  "replacementWord": "",
+  "hasChangedWord": false,
+  "roundDuration": 60,
+  "timeLeft": 0,
+  "canGetWord": true,
+  "gameStarted": true,
+  "gameEndedForTurn": true,
+  "activeScreen": "screen-history",
+  "savedAt": "2026-11-16T23:00:32.082Z"
+}
