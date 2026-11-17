@@ -35,7 +35,6 @@
     }
   ],
   "gameWords": [
-    "کوهنوردی",
     "فوتبال",
     "ماشین حساب",
     "سینما",
@@ -43,23 +42,23 @@
   ],
   "scores": [
     9,
-    9
+    12
   ],
   "mistakes": [
     0,
     1
   ],
-  "turnStartedAt": 1794873798626,
+  "turnStartedAt": 1794874547623,
   "currentTeamIndex": 1,
-  "currentWord": "دندانپزشک",
-  "originalWord": "",
+  "currentWord": "کوهنوردی",
+  "originalWord": "کوهنوردی",
   "replacementWord": "",
   "hasChangedWord": false,
   "roundDuration": 60,
-  "timeLeft": 59,
-  "canGetWord": true,
+  "timeLeft": 57,
+  "canGetWord": false,
   "gameStarted": true,
   "gameEndedForTurn": true,
   "activeScreen": "screen-game",
-  "savedAt": "2026-11-17T00:15:18.885Z"
+  "savedAt": "2026-11-17T00:15:57.738Z"
 }
