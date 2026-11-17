@@ -51,14 +51,14 @@
   "turnStartedAt": 1794874547623,
   "currentTeamIndex": 1,
   "currentWord": "کوهنوردی",
-  "originalWord": "کوهنوردی",
+  "originalWord": "",
   "replacementWord": "",
   "hasChangedWord": false,
   "roundDuration": 60,
   "timeLeft": 57,
-  "canGetWord": false,
+  "canGetWord": true,
   "gameStarted": true,
   "gameEndedForTurn": true,
   "activeScreen": "screen-game",
-  "savedAt": "2026-11-17T00:15:57.738Z"
+  "savedAt": "2026-11-17T00:16:50.028Z"
 }
