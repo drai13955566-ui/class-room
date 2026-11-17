@@ -35,28 +35,31 @@
     }
   ],
   "gameWords": [
-    "دندانپزشک",
-    "فوتبال"
+    "کوهنوردی",
+    "فوتبال",
+    "ماشین حساب",
+    "سینما",
+    "دیجیتال"
   ],
   "scores": [
     9,
-    3
+    9
   ],
   "mistakes": [
     0,
     1
   ],
-  "turnStartedAt": 1794870515765,
-  "currentTeamIndex": 0,
-  "currentWord": "ماشین حساب",
-  "originalWord": "ماشین حساب",
+  "turnStartedAt": 1794873798626,
+  "currentTeamIndex": 1,
+  "currentWord": "دندانپزشک",
+  "originalWord": "",
   "replacementWord": "",
   "hasChangedWord": false,
   "roundDuration": 60,
-  "timeLeft": 58,
-  "canGetWord": false,
+  "timeLeft": 59,
+  "canGetWord": true,
   "gameStarted": true,
   "gameEndedForTurn": true,
   "activeScreen": "screen-game",
-  "savedAt": "2026-11-16T23:19:34.414Z"
+  "savedAt": "2026-11-17T00:15:18.885Z"
 }
